@@ -142,14 +142,14 @@ export class UsersController {
     async findByEmail(
         @Param('email') 
         email: string
-    ): Promise< { message: string; user?: Users } > {
+    ): Promise<Users> {
         try{
             const u = await this.usersService.findByEmail(email);
             if (!u) {
                 throw new NotFoundException('User not found');
             }
 
-            return { message: 'User found successfully', user: u };
+            return u;
         }
         catch(error){
             throw new HttpException({
