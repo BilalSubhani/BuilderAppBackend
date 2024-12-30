@@ -1,4 +1,5 @@
 import { Body, Controller, Get, Post, HttpException, HttpStatus, Param, NotFoundException, Put, Delete } from '@nestjs/common';
+
 import { UsersService } from './users.service';
 import { Users } from './schemas/users.schema';
 import { CreateUserDto } from './dto/create-user.dto';
@@ -127,6 +128,28 @@ export class UsersController {
                 throw new NotFoundException('User not found');
 
             return { message: 'Admin status updated successfully', user };
+        }
+        catch(error){
+            throw new HttpException({
+                status: HttpStatus.BAD_REQUEST,
+                error: error.message,
+                message: 'Invalid credentials'
+            }, HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @Get('email/:email')
+    async findByEmail(
+        @Param('email') 
+        email: string
+    ): Promise< { message: string; user?: Users } > {
+        try{
+            const u = await this.usersService.findByEmail(email);
+            if (!u) {
+                throw new NotFoundException('User not found');
+            }
+
+            return { message: 'User found successfully', user: u };
         }
         catch(error){
             throw new HttpException({
