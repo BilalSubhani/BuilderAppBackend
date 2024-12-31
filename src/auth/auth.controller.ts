@@ -15,7 +15,7 @@ export class AuthController {
         @Req()
         req: Request
     ){
-        return req.user;
+        return { "token": req.user };
     }
 
 
