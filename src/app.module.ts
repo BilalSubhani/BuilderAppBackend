@@ -4,11 +4,14 @@ import { AppService } from './app.service';
 import { ConfigModule } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
 
-// Modules
+// Modules, Services & Controllers
+
 import { UsersModule } from './users/users.module';
 import { AuthModule } from './auth/auth.module';
+import { MediaModule } from './media/media.module';
 import { DataController } from './data/data.controller';
 import { DataService } from './data/data.service';
+
 
 @Module({
   imports: [ 
@@ -18,9 +21,10 @@ import { DataService } from './data/data.service';
     }),
     MongooseModule.forRoot(process.env.DB_URI),
     UsersModule,
-    AuthModule
+    AuthModule,
+    MediaModule
   ],
-  controllers: [AppController, DataController],
-  providers: [AppService, DataService],
+  controllers: [AppController, DataController,],
+  providers: [AppService, DataService,],
 })
 export class AppModule {}

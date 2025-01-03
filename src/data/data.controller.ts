@@ -21,7 +21,7 @@ export class DataController {
                 }
             },
             "Button":{
-                "name": "Profile",
+                "name": "Back to Burq",
                 "link": "/burq"
             }
         };
