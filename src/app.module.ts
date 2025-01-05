@@ -11,6 +11,9 @@ import { AuthModule } from './auth/auth.module';
 import { MediaModule } from './media/media.module';
 import { DataController } from './data/data.controller';
 import { DataService } from './data/data.service';
+import { CloudinaryService } from './cloudinary.service';
+import { MediaController } from './media-controller/media.controller';
+import { MulterModule } from '@nestjs/platform-express';
 
 
 @Module({
@@ -22,9 +25,12 @@ import { DataService } from './data/data.service';
     MongooseModule.forRoot(process.env.DB_URI),
     UsersModule,
     AuthModule,
-    MediaModule
+    MediaModule, 
+    MulterModule.register({
+      dest: './uploads',
+    }),
   ],
-  controllers: [AppController, DataController,],
-  providers: [AppService, DataService,],
+  controllers: [AppController, DataController, MediaController,],
+  providers: [AppService, DataService, CloudinaryService,],
 })
 export class AppModule {}

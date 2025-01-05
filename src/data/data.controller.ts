@@ -9,7 +9,7 @@ export class DataController {
             "List":{
                 "Item1": {
                     "name": "Home",
-                    "link": "/burq"
+                    "link": "/main"
                 },
                 "Item2": {
                     "name": "About",
