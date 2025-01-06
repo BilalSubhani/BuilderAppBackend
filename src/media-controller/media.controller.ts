@@ -1,6 +1,7 @@
 import { CloudinaryService } from '../cloudinary.service';
-import { Controller, Post, UploadedFile, UseInterceptors, Body } from '@nestjs/common';
+import { Controller, Post, UploadedFile, UseInterceptors, Body, Get, Query, Param } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
+import { v2 } from 'cloudinary';
 
 @Controller('media')
 export class MediaController {
@@ -35,4 +36,28 @@ export class MediaController {
             throw new Error('Failed to upload video');
         }
     }
+
+
+    @Get('images/:public_id')
+    async fetchImage(@Param('public_id') publicId: string) {
+        try {
+            const url = this.CloudinaryService.getImage(publicId);
+            return { url };
+        } catch (error) {
+            console.log('Error fetching image:', error);
+            throw new Error('Failed to fetch image');
+        }
+    }
+
+    @Get('videos/:public_id')
+    async fetchVideo(@Param('public_id') publicId: string) {
+        try {
+            const url = this.CloudinaryService.getVideo(publicId);
+            return { url };
+        } catch (error) {
+            console.log('Error fetching video:', error);
+            throw new Error('Failed to fetch video');
+        }
+    }
+
 }
