@@ -2,31 +2,10 @@ import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
 
 @Schema()
-class ListItem {
-  @Prop({ type: String, required: true })
-  text: string;
-
-  @Prop({ type: [String], default: [] })
-  dropdown: string[];
-}
-
-@Schema()
-class FeatureTile {
-  @Prop({ type: String, required: true })
-  title: string;
-
-  @Prop({ type: String, required: true })
-  body: string;
-}
-
-@Schema()
 class Components {
-  @Prop({
-    type: [ListItem],
-    required: true,
-  })
+  @Prop({ type: Object, required: true })
   navbar: {
-    listItems: ListItem[];
+    listItems: { [key: string]: string[] };
     buttonText: string;
   };
 
@@ -40,20 +19,18 @@ class Components {
   @Prop({ type: Object, required: true })
   features: {
     title: string;
-    featureTiles: FeatureTile[];
+    featureTiles: { [key: string]: string };
   };
 
   @Prop({ type: Object, required: true })
   providers: {
     title: string;
     body: string;
-    listItems: string[];
+    listItems: { [key: string]: string };
   };
 
   @Prop({ type: Object, required: true })
-  tabs: {
-    tabs: string[];
-  };
+  tabs: { [key: string]: string[] };
 
   @Prop({ type: Object, required: true })
   integrate: {
@@ -66,8 +43,7 @@ class Components {
   @Prop({ type: Object, required: true })
   industries: {
     title: string;
-    tabContentHeading: string[];
-    tabContentBody: string[];
+    tabContent: { [key: string]: string };
   };
 
   @Prop({ type: Object, required: true })
@@ -78,17 +54,12 @@ class Components {
   };
 
   @Prop({ type: Object, required: true })
-  sellingPoints: {
-    tileHeadings: string[];
-    tileBody: string[];
-  };
+  sellingPoints: { [key: string]: string };
 
   @Prop({ type: Object, required: true })
   testimonials: {
     title: string;
-    comment: string[];
-    name: string[];
-    desig: string[];
+    comment: { [key: string]: string };
   };
 
   @Prop({ type: Object, required: true })
@@ -104,22 +75,13 @@ class Components {
   };
 }
 
-@Schema()
-class HistoryEntry {
-  @Prop({ type: Date, default: Date.now })
-  timestamp: Date;
-
-  @Prop({ type: Object, required: true })
-  components: Components;
-}
-
 @Schema({ timestamps: true })
 export class Data extends Document {
+  @Prop({ required: true })
+  version: number;
+
   @Prop({ type: Components, required: true })
   components: Components;
-
-  @Prop({ type: [HistoryEntry], default: [] })
-  history: HistoryEntry[];
 }
 
 export const DataSchema = SchemaFactory.createForClass(Data);

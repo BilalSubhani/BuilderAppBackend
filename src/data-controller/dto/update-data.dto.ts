@@ -1,277 +1,118 @@
-import {
-    IsString,
-    IsArray,
-    IsOptional,
-    ValidateNested,
-} from 'class-validator';
+import { IsNotEmpty, IsString, IsObject, IsArray, IsOptional } from 'class-validator';
 import { Type } from 'class-transformer';
 
-
-class ListItemDto {
-    @IsString()
-    @IsOptional()
-    text?: string;
-
-    @IsArray()
-    @IsString({ each: true })
-    @IsOptional()
-    dropdown?: string[];
-}
-
 class FeatureTileDto {
-    @IsString()
-    @IsOptional()
-    title?: string;
+  @IsString()
+  @IsNotEmpty()
+  @IsOptional()
+  title?: string;
 
-    @IsString()
-    @IsOptional()
-    body?: string;
-}
-
-class NavbarDto {
-    @IsArray()
-    @ValidateNested({ each: true })
-    @Type(() => ListItemDto)
-    @IsOptional()
-    listItems?: ListItemDto[];
-
-    @IsString()
-    @IsOptional()
-    buttonText?: string;
-}
-
-class HeroSectionDto {
-    @IsString()
-    @IsOptional()
-    heading?: string;
-
-    @IsString()
-    @IsOptional()
-    paragraph?: string;
-
-    @IsString()
-    @IsOptional()
-    buttonText?: string;
-}
-
-class FeaturesDto {
-    @IsString()
-    @IsOptional()
-    title?: string;
-
-    @IsArray()
-    @ValidateNested({ each: true })
-    @Type(() => FeatureTileDto)
-    @IsOptional()
-    featureTiles?: FeatureTileDto[];
-}
-
-class ProvidersDto {
-    @IsString()
-    @IsOptional()
-    title?: string;
-
-    @IsString()
-    @IsOptional()
-    body?: string;
-
-    @IsArray()
-    @IsString({ each: true })
-    @IsOptional()
-    listItems?: string[];
-}
-
-class TabsDto {
-    @IsArray()
-    @IsString({ each: true })
-    @IsOptional()
-    tabs?: string[];
-}
-
-class IntegrateDto {
-    @IsString()
-    @IsOptional()
-    smallHeading?: string;
-
-    @IsString()
-    @IsOptional()
-    title?: string;
-
-    @IsString()
-    @IsOptional()
-    body?: string;
-
-    @IsString()
-    @IsOptional()
-    button?: string;
-}
-
-class IndustriesDto {
-    @IsString()
-    @IsOptional()
-    title?: string;
-
-    @IsArray()
-    @IsString({ each: true })
-    @IsOptional()
-    tabContentHeading?: string[];
-
-    @IsArray()
-    @IsString({ each: true })
-    @IsOptional()
-    tabContentBody?: string[];
-}
-
-class WhyBurqDto {
-    @IsString()
-    @IsOptional()
-    title?: string;
-
-    @IsString()
-    @IsOptional()
-    body?: string;
-
-    @IsString()
-    @IsOptional()
-    button?: string;
-}
-
-class SellingPointsDto {
-    @IsArray()
-    @IsString({ each: true })
-    @IsOptional()
-    tileHeadings?: string[];
-
-    @IsArray()
-    @IsString({ each: true })
-    @IsOptional()
-    tileBody?: string[];
-}
-
-class TestimonialsDto {
-    @IsString()
-    @IsOptional()
-    title?: string;
-
-    @IsArray()
-    @IsString({ each: true })
-    @IsOptional()
-    comment?: string[];
-
-    @IsArray()
-    @IsString({ each: true })
-    @IsOptional()
-    name?: string[];
-
-    @IsArray()
-    @IsString({ each: true })
-    @IsOptional()
-    desig?: string[];
-}
-
-class BackingDto {
-    @IsString()
-    @IsOptional()
-    title?: string;
-
-    @IsString()
-    @IsOptional()
-    body?: string;
-}
-
-class StartPoweringDto {
-    @IsString()
-    @IsOptional()
-    body?: string;
-
-    @IsString()
-    @IsOptional()
-    button?: string;
+  @IsString()
+  @IsNotEmpty()
+  @IsOptional()
+  body?: string;
 }
 
 class ComponentsDto {
-    @ValidateNested()
-    @Type(() => NavbarDto)
-    @IsOptional()
-    navbar?: NavbarDto;
+  @IsObject()
+  @IsNotEmpty()
+  @IsOptional()
+  navbar?: {
+    listItems: { [key: string]: string[] };
+    buttonText: string;
+  };
 
-    @ValidateNested()
-    @Type(() => HeroSectionDto)
-    @IsOptional()
-    heroSection?: HeroSectionDto;
+  @IsObject()
+  @IsNotEmpty()
+  @IsOptional()
+  heroSection?: {
+    heading: string;
+    paragraph: string;
+    buttonText: string;
+  };
 
-    @ValidateNested()
-    @Type(() => FeaturesDto)
-    @IsOptional()
-    features?: FeaturesDto;
+  @IsObject()
+  @IsNotEmpty()
+  @IsOptional()
+  features?: {
+    title: string;
+    featureTiles: { [key: string]: string };
+  };
 
-    @ValidateNested()
-    @Type(() => ProvidersDto)
-    @IsOptional()
-    providers?: ProvidersDto;
+  @IsObject()
+  @IsNotEmpty()
+  @IsOptional()
+  providers?: {
+    title: string;
+    body: string;
+    listItems: { [key: string]: string };
+  };
 
-    @ValidateNested()
-    @Type(() => TabsDto)
-    @IsOptional()
-    tabs?: TabsDto;
+  @IsObject()
+  @IsNotEmpty()
+  @IsOptional()
+  tabs?: { [key: string]: string[] };
 
-    @ValidateNested()
-    @Type(() => IntegrateDto)
-    @IsOptional()
-    integrate?: IntegrateDto;
+  @IsObject()
+  @IsNotEmpty()
+  @IsOptional()
+  integrate?: {
+    smallHeading: string;
+    title: string;
+    body: string;
+    button: string;
+  };
 
-    @ValidateNested()
-    @Type(() => IndustriesDto)
-    @IsOptional()
-    industries?: IndustriesDto;
+  @IsObject()
+  @IsNotEmpty()
+  @IsOptional()
+  industries?: {
+    title: string;
+    tabContent: { [key: string]: string };
+  };
 
-    @ValidateNested()
-    @Type(() => WhyBurqDto)
-    @IsOptional()
-    whyBurq?: WhyBurqDto;
+  @IsObject()
+  @IsNotEmpty()
+  @IsOptional()
+  whyBurq?: {
+    title: string;
+    body: string;
+    button: string;
+  };
 
-    @ValidateNested()
-    @Type(() => SellingPointsDto)
-    @IsOptional()
-    sellingPoints?: SellingPointsDto;
+  @IsObject()
+  @IsNotEmpty()
+  @IsOptional()
+  sellingPoints?: { [key: string]: string };
 
-    @ValidateNested()
-    @Type(() => TestimonialsDto)
-    @IsOptional()
-    testimonials?: TestimonialsDto;
+  @IsObject()
+  @IsNotEmpty()
+  @IsOptional()
+  testimonials?: {
+    title: string;
+    comment: { [key: string]: string };
+  };
 
-    @ValidateNested()
-    @Type(() => BackingDto)
-    @IsOptional()
-    backing?: BackingDto;
+  @IsObject()
+  @IsNotEmpty()
+  @IsOptional()
+  backing?: {
+    title: string;
+    body: string;
+  };
 
-    @ValidateNested()
-    @Type(() => StartPoweringDto)
-    @IsOptional()
-    startPowering?: StartPoweringDto;
+  @IsObject()
+  @IsNotEmpty()
+  @IsOptional()
+  startPowering?: {
+    body: string;
+    button: string;
+  };
 }
-
-
-class HistoryEntryDto {
-    @IsString()
-    @IsOptional()
-    timestamp?: string;
-
-    @ValidateNested()
-    @Type(() => ComponentsDto)
-    @IsOptional()
-    components?: ComponentsDto;
-}
-
 
 export class UpdateDataDto {
-    @ValidateNested()
-    @Type(() => ComponentsDto)
-    @IsOptional()
-    components?: ComponentsDto;
-
-    @IsOptional()
-    @ValidateNested({ each: true })
-    @Type(() => HistoryEntryDto)
-    history?: HistoryEntryDto[];
+  @IsObject()
+  @IsNotEmpty()
+  @Type(() => ComponentsDto)
+  components: ComponentsDto;
 }

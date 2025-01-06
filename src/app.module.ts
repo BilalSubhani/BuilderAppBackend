@@ -32,7 +32,7 @@ import { DataModule } from './data-controller/data.module';
       dest: './uploads',
     }),
   ],
-  controllers: [AppController, DataController, MediaController,],
-  providers: [AppService, DataService, CloudinaryService,],
+  controllers: [AppController, MediaController,],
+  providers: [AppService, CloudinaryService,],
 })
 export class AppModule {}
