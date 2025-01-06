@@ -9,11 +9,12 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { UsersModule } from './users/users.module';
 import { AuthModule } from './auth/auth.module';
 import { MediaModule } from './media/media.module';
-import { DataController } from './data/data.controller';
-import { DataService } from './data/data.service';
+import { DataController } from './data-controller/data.controller';
+import { DataService } from './data-controller/data.service';
 import { CloudinaryService } from './cloudinary.service';
 import { MediaController } from './media-controller/media.controller';
 import { MulterModule } from '@nestjs/platform-express';
+import { DataModule } from './data-controller/data.module';
 
 
 @Module({
@@ -26,6 +27,7 @@ import { MulterModule } from '@nestjs/platform-express';
     UsersModule,
     AuthModule,
     MediaModule, 
+    DataModule,
     MulterModule.register({
       dest: './uploads',
     }),

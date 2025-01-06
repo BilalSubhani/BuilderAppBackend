@@ -58,5 +58,4 @@ export class MediaController {
             throw new Error('Failed to fetch video');
         }
     }
-
 }
