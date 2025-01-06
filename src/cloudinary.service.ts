@@ -52,11 +52,12 @@ export class CloudinaryService {
       }
       
 
-    getImage(publicId: string): string {
-        return v2.url(publicId, { folder: 'images' });
+      getImage(publicId: string): string {
+        return v2.url(`images/${publicId}`, { resource_type: 'image' });
     }
-
+    
     getVideo(publicId: string): string {
-        return v2.url(publicId, { resource_type: 'video', folder: 'videos' });
+        return v2.url(`videos/${publicId}`, { resource_type: 'video' });
     }
+    
 }

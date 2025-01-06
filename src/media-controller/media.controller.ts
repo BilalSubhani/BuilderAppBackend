@@ -1,7 +1,6 @@
 import { CloudinaryService } from '../cloudinary.service';
-import { Controller, Post, UploadedFile, UseInterceptors, Body, Get, Query, Param } from '@nestjs/common';
+import { Controller, Post, UploadedFile, UseInterceptors, Body, Get, Param } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
-import { v2 } from 'cloudinary';
 
 @Controller('media')
 export class MediaController {
