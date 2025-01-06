@@ -42,20 +42,18 @@ export class DataController {
     @Body() data: CreateDataDto,
   ): Promise<{ message: string; data?: Data }> {
     try {
-      console.log('Received data:', data);
+      // console.log('Received data:', data);
       const newData = await this.dataService.createDataInMongo(data);
-      console.log('Saved data:', newData);
+      // console.log('Saved data:', newData);
       return { message: 'Data uploaded successfully', data: newData };
-    } catch (error) {
+    } 
+    catch (error) {
       console.error('Error occurred:', error);
-      throw new HttpException(
-        {
-          status: HttpStatus.BAD_REQUEST,
-          error: error.message,
-          message: 'Invalid data provided',
-        },
-        HttpStatus.BAD_REQUEST,
-      );
+      throw new HttpException({
+        status: HttpStatus.BAD_REQUEST,
+        error: error.message,
+        message: 'Invalid data provided',
+      },  HttpStatus.BAD_REQUEST );
     }
   }
 
@@ -64,69 +62,61 @@ export class DataController {
     try {
       const data = await this.dataService.getAllDataFromMongo();
       return { message: 'Data fetched successfully', data };
-    } catch (error) {
-      throw new HttpException(
-        {
+    } 
+    catch (error) {
+      throw new HttpException({
           status: HttpStatus.INTERNAL_SERVER_ERROR,
           error: error.message,
           message: 'Failed to fetch data',
-        },
-        HttpStatus.INTERNAL_SERVER_ERROR,
-      );
+      },HttpStatus.INTERNAL_SERVER_ERROR,);
     }
   }
 
-    @Put(':id')
-    async updateData(
-        @Param('id') id: string,
-        @Body() data: UpdateDataDto,
-    ): Promise<{ message: string; data?: Data }> {
-        try {
-        console.log('Received data for update:', data);
-        const updatedData = await this.dataService.updateDataInMongo(id, data);
-        console.log('Updated data:', updatedData);
-        return { message: 'Data updated successfully', data: updatedData };
-        } catch (error) {
-        console.error('Error occurred while updating:', error);
-        throw new HttpException(
-            {
-            status: HttpStatus.BAD_REQUEST,
-            error: error.message,
-            message: 'Invalid data provided',
-            },
-            HttpStatus.BAD_REQUEST,
-        );
-        }
+  @Put(':id')
+  async updateData(
+      @Param('id') id: string,
+      @Body() data: UpdateDataDto,
+  ): Promise<{ message: string; data?: Data }> {
+    try {
+      // console.log('Received data for update:', data);
+      const updatedData = await this.dataService.updateDataInMongo(id, data);
+      // console.log('Updated data:', updatedData);
+      return { message: 'Data updated successfully', data: updatedData };
+    } 
+    catch (error) {
+      console.error('Error occurred while updating:', error);
+      throw new HttpException({
+        status: HttpStatus.BAD_REQUEST,
+        error: error.message,
+        message: 'Invalid data provided',
+      }, HttpStatus.BAD_REQUEST);
+    }
+  }
+
+
+  @Get('component/:componentName')
+  async getLatestComponentData(
+      @Param('componentName') componentName: string,
+  ): Promise<{ message: string; data: any }> {
+    try {
+    const componentData = await this.dataService.getLatestComponentData(componentName);
+
+    if (!componentData) {
+      throw new HttpException({
+        status: HttpStatus.NOT_FOUND,
+        message: 'Component data not found',
+      }, HttpStatus.NOT_FOUND);
     }
 
+    return { message: 'Latest component data fetched successfully', data: componentData };
 
-    @Get('component/:componentName')
-    async getLatestComponentData(
-        @Param('componentName') componentName: string,
-    ): Promise<{ message: string; data: any }> {
-        try {
-        const componentData = await this.dataService.getLatestComponentData(componentName);
-
-        if (!componentData) {
-            throw new HttpException(
-            {
-                status: HttpStatus.NOT_FOUND,
-                message: 'Component data not found',
-            },
-            HttpStatus.NOT_FOUND,
-            );
-        }
-
-        return { message: 'Latest component data fetched successfully', data: componentData };
-        } catch (error) {
-        throw new HttpException(
-            {
-            status: HttpStatus.INTERNAL_SERVER_ERROR,
-            error: error.message,
-            message: 'Error occurred while fetching component data',
-            },
-            HttpStatus.INTERNAL_SERVER_ERROR,
-        );
-        }
+    } 
+    catch (error) {
+      throw new HttpException({
+        status: HttpStatus.INTERNAL_SERVER_ERROR,
+        error: error.message,
+        message: 'Error occurred while fetching component data',
+      },  HttpStatus.INTERNAL_SERVER_ERROR);
     }
+  }
 }
