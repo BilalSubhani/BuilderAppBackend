@@ -31,7 +31,7 @@ class ComponentsDto {
   @IsNotEmpty()
   features: {
     title: string;
-    featureTiles: { [key: string]: string };
+    featureTiles: { [key: string]: string[] };
   };
 
   @IsObject()
@@ -44,7 +44,7 @@ class ComponentsDto {
 
   @IsObject()
   @IsNotEmpty()
-  tabs: { [key: string]: string[] };
+  tabs: string[];
 
   @IsObject()
   @IsNotEmpty()
@@ -59,7 +59,7 @@ class ComponentsDto {
   @IsNotEmpty()
   industries: {
     title: string;
-    tabContent: { [key: string]: string };
+    tabContent: { [key: string]: string[] };
   };
 
   @IsObject()
@@ -72,13 +72,13 @@ class ComponentsDto {
 
   @IsObject()
   @IsNotEmpty()
-  sellingPoints: { [key: string]: string };
+  sellingPoints: { [key: string]: string[] };
 
   @IsObject()
   @IsNotEmpty()
   testimonials: {
     title: string;
-    comment: { [key: string]: string };
+    comment: { [key: string]: string[] };
   };
 
   @IsObject()

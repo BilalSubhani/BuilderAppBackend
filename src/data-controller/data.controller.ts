@@ -13,29 +13,29 @@ export class DataController {
     private dataService: DataService
   ) {}
 
-    // @Get()
-    // getNavbar() {
-    //     return {
-    //         "List":{
-    //             "Item1": {
-    //                 "name": "Home",
-    //                 "link": "/main"
-    //             },
-    //             "Item2": {
-    //                 "name": "About",
-    //                 "link": "/burq"
-    //             },
-    //             "Item3": {
-    //                 "name": "Contact",
-    //                 "link": "/burq"
-    //             }
-    //         },
-    //         "Button":{
-    //             "name": "Back to Burq",
-    //             "link": "/burq"
-    //         }
-    //     };
-    // }
+  // @Get()
+  // getNavbar() {
+  //     return {
+  //         "List":{
+  //             "Item1": {
+  //                 "name": "Home",
+  //                 "link": "/main"
+  //             },
+  //             "Item2": {
+  //                 "name": "About",
+  //                 "link": "/burq"
+  //             },
+  //             "Item3": {
+  //                 "name": "Contact",
+  //                 "link": "/burq"
+  //             }
+  //         },
+  //         "Button":{
+  //             "name": "Back to Burq",
+  //             "link": "/burq"
+  //         }
+  //     };
+  // }
 
   @Post()
   async createData(
@@ -92,7 +92,6 @@ export class DataController {
       }, HttpStatus.BAD_REQUEST);
     }
   }
-
 
   @Get('component/:componentName')
   async getLatestComponentData(

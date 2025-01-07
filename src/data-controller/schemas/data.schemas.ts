@@ -19,7 +19,7 @@ class Components {
   @Prop({ type: Object, required: true })
   features: {
     title: string;
-    featureTiles: { [key: string]: string };
+    featureTiles: { [key: string]: string[] };
   };
 
   @Prop({ type: Object, required: true })
@@ -30,7 +30,7 @@ class Components {
   };
 
   @Prop({ type: Object, required: true })
-  tabs: { [key: string]: string[] };
+  tabs:  string[];
 
   @Prop({ type: Object, required: true })
   integrate: {
@@ -43,7 +43,7 @@ class Components {
   @Prop({ type: Object, required: true })
   industries: {
     title: string;
-    tabContent: { [key: string]: string };
+    tabContent: { [key: string]: string[] };
   };
 
   @Prop({ type: Object, required: true })
@@ -54,12 +54,12 @@ class Components {
   };
 
   @Prop({ type: Object, required: true })
-  sellingPoints: { [key: string]: string };
+  sellingPoints: { [key: string]: string[] };
 
   @Prop({ type: Object, required: true })
   testimonials: {
     title: string;
-    comment: { [key: string]: string };
+    comment: { [key: string]: string[] };
   };
 
   @Prop({ type: Object, required: true })

@@ -1,17 +1,5 @@
-import { IsNotEmpty, IsString, IsObject, IsArray, IsOptional } from 'class-validator';
+import { IsNotEmpty, IsObject, IsOptional } from 'class-validator';
 import { Type } from 'class-transformer';
-
-class FeatureTileDto {
-  @IsString()
-  @IsNotEmpty()
-  @IsOptional()
-  title?: string;
-
-  @IsString()
-  @IsNotEmpty()
-  @IsOptional()
-  body?: string;
-}
 
 class ComponentsDto {
   @IsObject()
@@ -36,7 +24,7 @@ class ComponentsDto {
   @IsOptional()
   features?: {
     title: string;
-    featureTiles: { [key: string]: string };
+    featureTiles: { [key: string]: string[] };
   };
 
   @IsObject()
@@ -51,7 +39,7 @@ class ComponentsDto {
   @IsObject()
   @IsNotEmpty()
   @IsOptional()
-  tabs?: { [key: string]: string[] };
+  tabs?: string[];
 
   @IsObject()
   @IsNotEmpty()
@@ -68,7 +56,7 @@ class ComponentsDto {
   @IsOptional()
   industries?: {
     title: string;
-    tabContent: { [key: string]: string };
+    tabContent: { [key: string]: string[] };
   };
 
   @IsObject()
@@ -83,14 +71,14 @@ class ComponentsDto {
   @IsObject()
   @IsNotEmpty()
   @IsOptional()
-  sellingPoints?: { [key: string]: string };
+  sellingPoints?: { [key: string]: string[] };
 
   @IsObject()
   @IsNotEmpty()
   @IsOptional()
   testimonials?: {
     title: string;
-    comment: { [key: string]: string };
+    comment: { [key: string]: string[] };
   };
 
   @IsObject()
