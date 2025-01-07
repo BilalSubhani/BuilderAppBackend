@@ -1,4 +1,4 @@
-import { Body, Controller, Get, HttpException, HttpStatus, Param, Post, Put } from '@nestjs/common';
+import { Body, Controller, Get, HttpException, HttpStatus, NotFoundException, Param, Post, Put } from '@nestjs/common';
 import { DataService } from './data.service';
 
 
@@ -13,36 +13,36 @@ export class DataController {
     private dataService: DataService
   ) {}
 
-  // @Get()
-  // getNavbar() {
-  //     return {
-  //         "List":{
-  //             "Item1": {
-  //                 "name": "Home",
-  //                 "link": "/main"
-  //             },
-  //             "Item2": {
-  //                 "name": "About",
-  //                 "link": "/burq"
-  //             },
-  //             "Item3": {
-  //                 "name": "Contact",
-  //                 "link": "/burq"
-  //             }
-  //         },
-  //         "Button":{
-  //             "name": "Back to Burq",
-  //             "link": "/burq"
-  //         }
-  //     };
-  // }
+  @Get('main')
+  getNavbar() {
+      return {
+          "List":{
+              "Item1": {
+                  "name": "Home",
+                  "link": "/main"
+              },
+              "Item2": {
+                  "name": "About",
+                  "link": "/burq"
+              },
+              "Item3": {
+                  "name": "Contact",
+                  "link": "/burq"
+              }
+          },
+          "Button":{
+              "name": "Back to Burq",
+              "link": "/burq"
+          }
+      };
+  }
 
   @Post()
   async createData(
     @Body() data: CreateDataDto,
   ): Promise<{ message: string; data?: Data }> {
     try {
-      // console.log('Received data:', data);
+      console.log('Received data:', data);
       const newData = await this.dataService.createDataInMongo(data);
       // console.log('Saved data:', newData);
       return { message: 'Data uploaded successfully', data: newData };
@@ -81,6 +81,7 @@ export class DataController {
       // console.log('Received data for update:', data);
       const updatedData = await this.dataService.updateDataInMongo(id, data);
       // console.log('Updated data:', updatedData);
+
       return { message: 'Data updated successfully', data: updatedData };
     } 
     catch (error) {
