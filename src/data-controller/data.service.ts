@@ -3,7 +3,6 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Data } from './schemas/data.schemas';
 import { Model } from 'mongoose';
 
-
 import { CreateDataDto } from './dto/create-data.dto';
 import { UpdateDataDto } from './dto/update-data.dto';
 
@@ -24,7 +23,6 @@ export class DataService {
             let newVersion = 1;
             if (latestData) {
                 newVersion = latestData.version + 1;
-                await this.dataModel.deleteMany({ version: { $lt: newVersion - 1 } });
             }
 
             const newData = new this.dataModel({ ...data, version: newVersion });
