@@ -1,4 +1,4 @@
-import { IsNotEmpty, IsString, IsObject, IsArray, IsNumber } from 'class-validator';
+import { IsNotEmpty, IsString, IsObject, IsArray, IsNumber, IsOptional } from 'class-validator';
 import { Type } from 'class-transformer';
 
 class FeatureTileDto {
@@ -98,7 +98,7 @@ class ComponentsDto {
 
 export class CreateDataDto {
   @IsNumber()
-  @IsNotEmpty()
+  @IsOptional()
   version: number;
 
   @IsObject()

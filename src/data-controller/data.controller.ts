@@ -42,13 +42,13 @@ export class DataController {
     @Body() data: CreateDataDto,
   ): Promise<{ message: string; data?: Data }> {
     try {
-      console.log('Received data:', data);
+      // console.log('Received data:', data);
       const newData = await this.dataService.createDataInMongo(data);
       // console.log('Saved data:', newData);
       return { message: 'Data uploaded successfully', data: newData };
     } 
     catch (error) {
-      console.error('Error occurred:', error);
+      // console.error('Error occurred:', error);
       throw new HttpException({
         status: HttpStatus.BAD_REQUEST,
         error: error.message,
@@ -85,7 +85,7 @@ export class DataController {
       return { message: 'Data updated successfully', data: updatedData };
     } 
     catch (error) {
-      console.error('Error occurred while updating:', error);
+      // console.error('Error occurred while updating:', error);
       throw new HttpException({
         status: HttpStatus.BAD_REQUEST,
         error: error.message,
