@@ -1,7 +1,9 @@
 import { WebSocketGateway, OnGatewayConnection, OnGatewayDisconnect, SubscribeMessage, MessageBody, WebSocketServer } from '@nestjs/websockets';
 import { Server, Socket } from 'socket.io';
 
-@WebSocketGateway({ cors: { origin: '*' } })
+@WebSocketGateway(3001, { cors: { origin: '*' },
+    transports: ['websocket'],
+})
 export class EventsGateway implements OnGatewayConnection, OnGatewayDisconnect {
   
     @WebSocketServer() 
@@ -9,7 +11,7 @@ export class EventsGateway implements OnGatewayConnection, OnGatewayDisconnect {
 
     handleConnection(client: Socket) {
         try {
-            // console.log(`Client connected: ${client.id}`);
+            console.log(`Client connected: ${client.id}`);
         } catch (error) {
             console.error('Error during connection:', error);
         }
@@ -17,7 +19,7 @@ export class EventsGateway implements OnGatewayConnection, OnGatewayDisconnect {
     
     handleDisconnect(client: Socket) {
         try {
-            // console.log(`Client disconnected: ${client.id}`);
+            //console.log(`Client disconnected: ${client.id}`);
         } catch (error) {
             console.error('Error during disconnection:', error);
         }
@@ -26,7 +28,7 @@ export class EventsGateway implements OnGatewayConnection, OnGatewayDisconnect {
     @SubscribeMessage('changeDetected')
     handleChange(@MessageBody() comp: any): void {
         try {
-            // console.log('Change in Component:', comp);
+            console.log('Change in Component:', comp);
             this.server.emit('handleChange', comp);
         } catch (error) {
             // console.error('Error handling changeDetected event:', error);
