@@ -2,7 +2,7 @@ import { WebSocketGateway, OnGatewayConnection, OnGatewayDisconnect, SubscribeMe
 import { Server, Socket } from 'socket.io';
 
 @WebSocketGateway(3001, { cors: { origin: '*' },
-    transports: ['websocket'],
+    transports: ['websocket', 'polling'],
 })
 export class EventsGateway implements OnGatewayConnection, OnGatewayDisconnect {
   
@@ -11,7 +11,7 @@ export class EventsGateway implements OnGatewayConnection, OnGatewayDisconnect {
 
     handleConnection(client: Socket) {
         try {
-            console.log(`Client connected: ${client.id}`);
+            //console.log(`Client connected: ${client.id}`);
         } catch (error) {
             console.error('Error during connection:', error);
         }
@@ -28,7 +28,7 @@ export class EventsGateway implements OnGatewayConnection, OnGatewayDisconnect {
     @SubscribeMessage('changeDetected')
     handleChange(@MessageBody() comp: any): void {
         try {
-            console.log('Change in Component:', comp);
+            //console.log('Change in Component:', comp);
             this.server.emit('handleChange', comp);
         } catch (error) {
             // console.error('Error handling changeDetected event:', error);
