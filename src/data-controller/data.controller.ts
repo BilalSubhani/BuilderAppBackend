@@ -19,15 +19,15 @@ export class DataController {
           "List":{
               "Item1": {
                   "name": "Home",
-                  "link": "/main"
+                  "link": "/burq"
               },
               "Item2": {
                   "name": "About",
                   "link": "/burq"
               },
               "Item3": {
-                  "name": "Contact",
-                  "link": "/burq"
+                  "name": "Users",
+                  "link": "dashboard/users"
               }
           },
           "Button":{
