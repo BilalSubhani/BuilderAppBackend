@@ -5,7 +5,7 @@ import { Document } from 'mongoose';
 class Components {
   @Prop({ type: Object, required: true })
   navbar: {
-    listItems: { [key: string]: string[] };
+    listItems: { key: string; values: string[] }[];
     buttonText: string;
   };
 

@@ -6,8 +6,8 @@ class ComponentsDto {
   @IsNotEmpty()
   @IsOptional()
   navbar?: {
-    listItems: { [key: string]: string[] };
-    buttonText: string;
+    listItems: { key: string; values: string[] }[];
+    buttonText: string[];
   };
 
   @IsObject()
@@ -16,7 +16,7 @@ class ComponentsDto {
   heroSection?: {
     heading: string;
     paragraph: string;
-    buttonText: string;
+    buttonText: string[];
   };
 
   @IsObject()
@@ -48,7 +48,7 @@ class ComponentsDto {
     smallHeading: string;
     title: string;
     body: string;
-    button: string;
+    button: string[];
   };
 
   @IsObject()
@@ -65,7 +65,7 @@ class ComponentsDto {
   whyBurq?: {
     title: string;
     body: string;
-    button: string;
+    button: string[];
   };
 
   @IsObject()
@@ -94,7 +94,7 @@ class ComponentsDto {
   @IsOptional()
   startPowering?: {
     body: string;
-    button: string;
+    button: string[];
   };
 }
 
