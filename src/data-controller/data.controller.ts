@@ -22,12 +22,8 @@ export class DataController {
                   "link": "/burq"
               },
               "Item2": {
-                  "name": "About",
-                  "link": "/burq"
-              },
-              "Item3": {
-                  "name": "Users",
-                  "link": "dashboard/users"
+                  "name": "Admin",
+                  "link": "/admin"
               }
           },
           "Button":{
