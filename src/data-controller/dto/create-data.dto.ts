@@ -1,15 +1,5 @@
-import { IsNotEmpty, IsString, IsObject, IsArray, IsNumber, IsOptional } from 'class-validator';
+import { IsNotEmpty, IsObject, IsNumber, IsOptional } from 'class-validator';
 import { Type } from 'class-transformer';
-
-class FeatureTileDto {
-  @IsString()
-  @IsNotEmpty()
-  title: string;
-
-  @IsString()
-  @IsNotEmpty()
-  body: string;
-}
 
 class ComponentsDto {
   @IsObject()
@@ -40,6 +30,7 @@ class ComponentsDto {
     title: string;
     body: string;
     listItems: { [key: string]: string };
+    counterItems: { [key: string]: string[] }[];
   };
 
   @IsObject()
@@ -93,6 +84,15 @@ class ComponentsDto {
   startPowering: {
     body: string;
     button: string[];
+  };
+
+  @IsObject()
+  @IsNotEmpty()
+  footer: {
+    listItems: { 
+      key: string;
+      values: string[];
+    }[];
   };
 }
 

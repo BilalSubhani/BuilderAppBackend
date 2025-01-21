@@ -38,7 +38,7 @@ export class DataController {
     @Body() data: CreateDataDto,
   ): Promise<{ message: string; data?: Data }> {
     try {
-      // console.log('Received data:', data);
+      console.log('Received data:', data);
       const newData = await this.dataService.createDataInMongo(data);
       // console.log('Saved data:', newData);
       return { message: 'Data uploaded successfully', data: newData };

@@ -73,6 +73,11 @@ class Components {
     body: string;
     button: string;
   };
+
+  @Prop({ type: Object, required: true })
+  footer: {
+    listItems: { key: string; values: string[] }[];
+  };
 }
 
 @Schema({ timestamps: true })
