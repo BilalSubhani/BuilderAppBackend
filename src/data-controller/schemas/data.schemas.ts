@@ -77,6 +77,7 @@ class Components {
   @Prop({ type: Object, required: true })
   footer: {
     listItems: { key: string; values: string[] }[];
+    socialLinks: string[];
   };
 }
 

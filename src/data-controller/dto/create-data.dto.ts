@@ -93,6 +93,7 @@ class ComponentsDto {
       key: string;
       values: string[];
     }[];
+    socialLinks: string[];
   };
 }
 
