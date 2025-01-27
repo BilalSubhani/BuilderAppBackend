@@ -37,8 +37,8 @@ This project is a backend application for the Builder App, developed using NestJ
 
 ### Cloning the Repository
 ```bash
-git clone https://github.com/your-repo/builder-app-backend.git
-cd builder-app-backend
+git clone https://github.com/BilalSubhani/BuilderAppBackend.git
+cd BuilderAppBackend
 ```
 
 ### Setting Up the Environment
@@ -61,7 +61,8 @@ npm install
 ```bash
 npm run start:dev
 ```
-The server will run at `http://localhost:3000`.
+- The server will run at `http://localhost:3000`.
+- The websockets will run at `http://localhost:3001`.
 
 ## API Documentation
 - Detailed API documentation is available at `/api/docs` (if Swagger is integrated).
