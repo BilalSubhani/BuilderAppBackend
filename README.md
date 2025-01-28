@@ -81,7 +81,7 @@ To deploy this backend application:
 
 ## Contact
 For questions, suggestions, or support, please reach out:
-- **Email**: bilalsubhani.025@gmail.com
+- **Email**: bilalsubhanii@outlook.com
 - **GitHub**: [Bilal Subhani](https://github.com/BilalSubhani)
 
 ---
